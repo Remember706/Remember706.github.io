@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <title>Remember706</title>
+    <script>
+        function password() {
+            var pass= prompt('请输入名字首字母缩写（小写）:', '');
+            while (1) {
+                if (pass == "zwb"||pass == "ljp"||pass == "wh"||pass == "zsl"||pass == "gsx"||pass == "sz"||pass == "jyc"||pass == "lhl") {
+                    // alert('密码正确!');
+                    // history.go(-1);
+                    break;
+                }
+                else{
+                    var pass = prompt('姓名错误!请重新输入:');
+
+                }
+            }
+            return " ";
+        }
+        function musicplay() {
+            music.play();
+        }
+        function delectchild() {
+            var container=document.getElementById("container");
+            while (container.hasChildNodes()) {
+                container.removeChild(content.firstChild);
+            }
+        }
+        function getpic() {
+            var container=document.getElementById("container");
+            while (container.hasChildNodes()) {
+                container.removeChild(container.firstChild);
+            }
+            for(var i=0;i<5;i++){
+                var index=Math.floor(Math.random() *197)
+                //console.log(index);
+                var newimg=document.createElement("img");
+                newimg.src="images/ ("+index+").jpg";
+                newimg.addEventListener('mouseover',function(){
+                    clearInterval(timer)
+                });
+                newimg.addEventListener('mouseout',function(){
+                    timer = setInterval(function(){
+                        getpic()
+                    },5000);
+                });
+                container.appendChild(newimg);
+            }
+        }
+        let timer = null;
+        const music = new Audio('static/bgm.mp3');
+        music.loop =true;
+        window.onload = function(){
+            getpic();
+            timer = setInterval(function(){
+                getpic();
+            },5000);
+        }
+        // document.write(password());
+        // var intervalId;
+        // intervalId = setInterval(function () {
+        //     console.log(4);
+        //     clearInterval(intervalId);	//清除定时器
+        // }, 500);
+    </script>
+</head>
+
+<body>
+    <h1>照片墙</h1>
+    <div style="width: 100%; display: flex; position: relative;">
+        <button onclick="getpic();">刷新</button>
+        <button onclick="musicplay();">音乐</button>
+    </div>
+	<div class="container" id="container">
+	</div>
+</body>
+
+</html>
